@@ -3,7 +3,7 @@
 ## Lab 1 - Introduction to Arduino Due: Sampling and Reconstruction
 
 # Pre-lab
-- Revise basic sampling theory
+- Revise basic sampling and the Nyquist sampling theorem
 - Familiarise yourself with Arduino Due by reading the documentation
 - Review analogue low-pass filters (low-pass filter, Sallen-Key topology for Butterworth filter)
 
@@ -17,13 +17,31 @@
 
 # Experiment 1: Sine Wave Generation
 ## Introduction
-In this experiement you will be using the Arduino Due to generate and output a sine wave.
+In this experiment you will be using the Arduino Due to generate and output a sine wave.
 
 ## Setup
 ### Hardware Setup
-1. Connect the Arduino Due to a computer using the micro-B USB cable.
+1. Connect the Arduino Due to a computer with the micro-B USB cable using the programming port
 2. Connect the DAC filter board to the Arduino Due with the 'Raw' board pin is connected to DAC1 and the 'Vcc' board pin connected to A8.
 3. Connect the PMOD-CON4 (pin to RCA) to the filter board with the 'P1' pin connected to the 'Raw' socket and 'GD' pin connected to the 'GND' socket.
-4. Using an RCA to BNC cable, connect the socket alligned to the raw output to an oscilloscope (CH1)
+4. Using an RCA to BNC cable, connect the socket aligned to the raw output to an oscilloscope (CH1)
 
-###
+### Software Setup
+1. Download and open the Arduino IDE (Legacy Version 1.8)
+2. Go to Tools > Board > Board Manager
+3. Search for the Arduino Due library and install it
+4. In Tools > Board, select the Arduino Due (Programming Port)
+5. In Tools > Port, select the correct port that the Arduino is connected to
+
+### Experimental Aims
+- To use the Arduino Due DAC as a look-up-table (LUT) signal generator.
+- To observe the real-world characteristics of reconstructed signals.
+- To observe the effect of filtering on a DAC output signal
+
+### Learning Outcomes
+By the end of this experiment, you should be able to:
+- To configure, program and upload code to an Arduino
+- Explain how to use a look-up-table to generate a signal and why it is used
+- Describe the shape of a DAC output
+- Determine the sampling rate and signal frequency of a reconstructed signal
+- Explain the effects of filtering on a reconstructed signal
