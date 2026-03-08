@@ -37,6 +37,11 @@ In this experiment you will be using the Arduino Due to generate and output a si
 - To use the Arduino Due DAC as a look-up-table (LUT) signal generator.
 - To observe the real-world characteristics of reconstructed signals.
 - To observe the effect of filtering on a DAC output signal
+- To produce the signal output defined mathematically as:
+
+$$
+  x[n] = A\sin{\left(\frac{2\pi n}{N}\right)} + C
+$$
 
 ### Learning Outcomes
 By the end of this experiment, you should be able to:
@@ -69,3 +74,195 @@ By the end of this experiment, you should be able to:
 - If the sample rate did not change as expected, why was it different?
 - Describe what happened when you modified `n = (n + 1) % 1`.
 - What are the advantages of using a look-up-table and what is the alternative?
+
+# Experiment 2: Sampling and Reconstruction
+## Introduction
+In this experiment you will use the Arduino Due to sample an analogue input using the ADC, optionally apply a simple DSP operation, and reconstruct the signal through the DAC.
+
+## Setup
+### Hardware Setup
+1. Fit both the ADC filter board and the DAC filter board.
+2. Connect the output of the oscilloscope wave generator to the input of the ADC filter board.
+3. Use a BNC T-piece if you want to observe both the input and output signals simultaneously.
+4. Connect the DAC output to the oscilloscope.
+5. Set the wave generator to a sine wave with approximately:
+   - frequency: 1 kHz
+   - offset: 1.65 V
+   - amplitude: no more than about 3.3 Vpp
+
+### Software Setup
+1. Open the Arduino file `ELEC3004_Lab1_Ex02_SampRecon.ino`
+2. Upload the program to the Arduino Due
+
+### Experimental Aims
+- To sample an analogue input and reconstruct it using the Arduino Due.
+- To observe the effects of sample rate on reconstruction.
+- To compare raw and filtered input/output signals.
+- To connect the code implementation to the mathematical model:
+
+$$
+  y[n] = x[n],\quad x[n] = x\left(n T_{s}\right)
+$$
+
+### Learning Outcomes
+By the end of this experiment, you should be able to:
+- describe the signal path from ADC to DSP to DAC,
+- explain the meaning of the memoryless system \(y[n] = x[n]\),
+- distinguish between raw and filtered analogue input channels,
+- relate changes in sample rate to reconstruction quality and aliasing effects,
+- explain why some DSP modifications can cause clipping or overflow.
+
+
+### Experimental Procedure
+- After setting up the hardware and software, open `ELEC3004_Lab1_Ex02_SampRecon.ino`
+- Upload the program to the Arduino Due
+- Verify that the DAC output follows the ADC input for a 1 kHz sine wave
+- Measure and record:
+  - the input frequency
+  - the output frequency
+  - the input amplitude
+  - the output amplitude
+- Increase the input frequency until the DAC output becomes very small
+- Continue increasing the input frequency and observe what happens to the output waveform
+- Reduce the input frequency to about 100 Hz
+- Slowly increase the frequency until the raw output begins to look like a staircase
+- Compare this with the filtered output
+- Modify `delayMicroseconds(0)` to reduce the sample processing rate to about 10 kHz
+- Repeat the frequency sweep and observe when the output appears to approach DC
+- Modify the DSP line so that:
+  - the output is scaled, e.g. `y[n] = x[n]/2`
+  - the output is amplified, e.g. `y[n] = 2x[n]`
+  - the output is offset, e.g. `y[n] = x[n] + 500`
+- Repeat the experiment using the filtered ADC channel instead of the raw channel
+
+### Questions
+- What did you observe when the input frequency approached the sampling limit?
+- Why did the output amplitude reduce towards zero at some frequencies?
+- What differences did you observe between the raw and filtered outputs?
+- What happened when you reduced the sample rate?
+- What is the effect of changing the DSP line to scale or offset the signal?
+- What do integer overflow and clipping look like in theory and in practice?
+- What do you expect to happen to input components above 10 kHz when using the filtered input?
+
+---
+
+# Experiment 3: Feedforward Echo
+## Introduction
+In this experiment you will implement an echo effect using a system with memory. The current input sample is combined with a delayed version of the input signal stored in a circular buffer.
+
+## Setup
+### Hardware Setup
+1. Fit both the ADC filter board and the DAC filter board.
+2. Connect an audio source or the oscilloscope wave generator to the ADC filter input.
+3. Connect the DAC output to powered speakers or another safe audio output.
+4. Ensure the input signal is appropriately offset via the ADC filter board.
+
+### Software Setup
+1. Open the Arduino file `ELEC3004_Lab1_Ex03_EchoFeedforward.ino`
+2. Upload the program to the Arduino Due
+
+### Experimental Aims
+- To implement a discrete-time echo system with memory.
+- To relate the program to the feedforward echo model
+  \[
+  y[n] = a\,x[n] + (1-a)x[n-D]
+  \]
+- To investigate the effects of delay, mixing ratio, and sample rate on the output signal.
+
+### Learning Outcomes
+By the end of this experiment, you should be able to:
+- explain why this system is not memoryless,
+- describe the purpose of a circular buffer,
+- relate the delay \(D\) in samples to the echo delay in seconds,
+- explain how the coefficient \(a\) affects the relative strength of the direct and delayed signals,
+- describe how sample rate affects perceived echo time.
+
+### Experimental Procedure
+- After setting up the hardware and software, open `ELEC3004_Lab1_Ex03_EchoFeedforward.ino`
+- Upload the program to the Arduino Due
+- Apply an audio signal or sinusoidal input and listen to the output
+- Vary the delay \(D\) and observe the effect on the echo time
+- Vary the mixing ratio \(a\) and observe how the direct and delayed signals change in prominence
+- Change the sample rate by modifying `delayMicroseconds(...)`
+- Compare the effect of:
+  - a small delay
+  - a large delay
+  - a faster sample rate
+  - a slower sample rate
+- Try both slowly varying and rapidly varying audio inputs
+
+### Questions
+- Why is this system classified as a system with memory?
+- What role does the circular buffer play?
+- How does changing \(D\) affect the echo?
+- How does changing the sample rate affect the echo time in seconds?
+- What happens when \(a = 0\)?
+- What happens when the delayed term is much larger or much smaller than the direct term?
+- How is this experiment different from the memoryless system in Experiment 2?
+
+---
+
+# Experiment 4: Feedback Echo
+## Introduction
+In this experiment you will modify the previous echo system so that the delayed signal is based on the output rather than the input. This creates a feedback echo system, which can produce repeated decaying echoes.
+
+## Setup
+### Hardware Setup
+1. Keep the same hardware setup as in Experiment 3.
+2. Ensure both ADC and DAC filter boards are fitted.
+3. Use powered speakers or a safe monitoring setup for audio output.
+
+### Software Setup
+1. Open the Arduino file `ELEC3004_Lab1_Ex04_EchoFeedback.ino`
+2. Upload the program to the Arduino Due
+
+### Experimental Aims
+- To implement an echo system with feedback.
+- To compare feedforward and feedback echo.
+- To investigate the effect of feedback gain on decay, persistence, and instability.
+
+### Learning Outcomes
+By the end of this experiment, you should be able to:
+- explain the difference between feedforward and feedback systems,
+- relate the code to the model
+  \[
+  y[n] = a\,x[n] + (1-a)y[n-D]
+  \]
+- explain why feedback causes repeated echoes,
+- predict how the system behaves as the feedback factor increases,
+- describe why large feedback values can lead to instability or saturation.
+
+### Experimental Procedure
+- After setting up the hardware and software, open `ELEC3004_Lab1_Ex04_EchoFeedback.ino`
+- Upload the program to the Arduino Due
+- Apply an audio input and listen to the resulting output
+- Compare the feedback echo with the feedforward echo from Experiment 3
+- Adjust the feedback strength and observe:
+  - fast decay
+  - slow decay
+  - sustained response
+- Try values of the feedback factor near:
+  - 0.9
+  - 0.99
+  - 1.0
+  - 1.01
+  - 1.10
+- Use a small-amplitude input when testing values near or above 1
+- Change the delay \(D\) and the sample rate, and observe the effect on the repeated echoes
+
+### Questions
+- What is the difference between feedforward echo and feedback echo?
+- Why does feedback produce repeated echoes?
+- What happens as the feedback factor approaches 1?
+- What happens when the feedback factor is greater than 1?
+- Why can the system become unstable or saturate for large feedback values?
+- How does changing \(D\) affect the sound of the feedback echo?
+- How does the feedback echo relate to ideas such as reverberation or comb filtering?
+
+---
+
+# Summary Questions
+- Which experiments were memoryless, and which had memory?
+- What role did filtering play across the experiments?
+- How did sample rate influence waveform quality, aliasing, and echo time?
+- What practical limitations did you observe when using integer arithmetic and finite memory?
