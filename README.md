@@ -302,7 +302,7 @@ $$
 ### Questions
 - What is the difference between feedforward echo and feedback echo?
 - Why does feedback produce repeated echoes?
-- What happens as the feedback factor approaches $\alpha$ 1?
+- What happens as the feedback factor ($\alpha$) approaches 1?
 - What do you think would happen if the feedback factor is greater than 1?
 - Why can the system become unstable or saturate for large feedback values?
 - How does changing $D$ affect the sound of the feedback echo?
