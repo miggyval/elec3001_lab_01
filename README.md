@@ -204,7 +204,7 @@ Ensure that the Arduino IDE is setup according to the last experiment:
 - To relate the program to the feedforward echo model
   
 $$
-  y[n] = (1 - \alpha) x[n] + \alpha x[n-D]
+  y[n] = \beta x[n] + \alpha x[n-D]
 $$
   
 - To investigate the effects of delay, mixing ratio, and sample rate on the output signal.
@@ -273,7 +273,7 @@ By the end of this experiment, you should be able to:
 - relate the code to the model
 
 $$
-  y[n] = (1 - \alpha) x[n] + \alpha y[n-D]
+  y[n] = \beta x[n] + \alpha y[n-D]
 $$
   
 - explain why feedback causes repeated echoes,
@@ -319,11 +319,11 @@ Find the impulse response of the following systems:
 Feedforward Echo:
 
 $$
-y[n] = (1 - \alpha) x[n] + \alpha x[n - D]
+y[n] = \beta x[n] + \alpha x[n - D]
 $$
 
 Feedback Echo:
 
 $$
-y[n] = (1 - \alpha) x[n] + \alpha y[n - D]
+y[n] = \beta x[n] + \alpha y[n - D]
 $$
