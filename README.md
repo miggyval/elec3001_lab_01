@@ -1,5 +1,15 @@
 # ELEC3004 Signals, Systems & Control
 ## Semester 1, 2026
+
+## Quick Links
+- [Pre-lab](#pre-lab)
+- [Lab Instructions](#lab-instructions)
+- [Experiment 1: Sine Wave Generation](#experiment-1-sine-wave-generation)
+- [Experiment 2: Sampling and Reconstruction](#experiment-2-sampling-and-reconstruction)
+- [Experiment 3: Feedforward Echo](#experiment-3-feedforward-echo)
+- [Experiment 4: Feedback Echo](#experiment-4-feedback-echo)
+- [Summary Questions](#summary-questions)
+
 ## Lab 1 - Introduction to Arduino Due: Sampling and Reconstruction
 
 # Pre-lab
@@ -15,7 +25,7 @@
 - Be sure to practice standard laboratory safety measures when working with electrical circuits
 
 
-# Experiment 1: Sine Wave Generation
+# Experiment 1 - Sine Wave Generation
 ## Introduction
 In this experiment you will be using the Arduino Due to generate and output a sine wave.
 
