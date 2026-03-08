@@ -5,6 +5,12 @@
 // Feedback echo:
 // y[n] = (1 - a)*x[n] + a*y[n - D]
 
+// ***********************************************************//
+// NOTE: This is a solution file to check your implementation //
+//       You should copy/modify ELEC3004_Lab1_Ex03_Echo.ino,  //
+//       so that it produces an echo with output feedback.    //
+// ***********************************************************//
+
 // Note: We require D < N to ensure the buffer is large enough
 const uint16_t N = 44900; // Circular buffer length in samples
 const uint16_t D = 39000; // Echo delay in samples
