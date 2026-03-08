@@ -260,7 +260,10 @@ Ensure that the Arduino IDE is setup according to the last experiment:
 3. Search for the Arduino Due library and install it
 4. In Tools > Board, select the Arduino Due (Programming Port)
 5. In Tools > Port, select the correct port that the Arduino is connected to.
-1. Open the Arduino file `ELEC3004_Lab1_Ex04_EchoFeedback.ino`
+6. Copy the Arduino file `ELEC3004_Lab1_Ex03_EchoFeedforward.ino`
+7. Rename the copied file to `ELEC3004_Lab_Ex04_EchoFeedback.ino`
+
+Note: The experiment 4 file is uploaded for you to *check* against. Please try to write the code yourself in the lab.
 
 ### Experimental Aims
 - To implement an echo system with feedback.
@@ -281,7 +284,8 @@ $$
 - describe why large feedback values can lead to instability or saturation.
 
 ### Experimental Procedure
-- After setting up the hardware and software, open `ELEC3004_Lab1_Ex04_EchoFeedback.ino`
+- After setting up the hardware and software, open the newly copied `ELEC3004_Lab1_Ex04_EchoFeedback.ino`
+- Modify the code so that it implements feedback
 - Upload the program to the Arduino Due
 - Apply an audio input and listen to the resulting output
 - Compare the feedback echo with the feedforward echo from Experiment 3
