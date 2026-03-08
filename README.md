@@ -24,6 +24,21 @@
 - This lab isn't a step-by-step recipe. Feel free to experiment with the parameters (within reason)
 - Be sure to practice standard laboratory safety measures when working with electrical circuits
 
+# Laboratory Session Aims
+- To build and program a practical DSP system
+- To investigate the effects of sampling rate on aliasing
+- To investigate the effects of analogue filtering on signals
+- To investigate the effect of a DSP system on a signal
+- To investigate the difference between feedforward and feedback systems
+
+# Learning Outcomes
+By the end of this lab, you should be able to:
+- Explain how a look-up-table is used to generate a signal
+- Describe the effects of sampling and aliasing on a signal
+- Explain the mathematical reason why aliasing occurs
+- Build a practical DSP system
+- Execute, debug, modify and explain how a DSP program runs
+
 
 # Experiment 1: Sine Wave Generation
 ## Introduction
@@ -84,6 +99,9 @@ By the end of this experiment, you should be able to:
 - If the sample rate did not change as expected, why was it different?
 - Describe what happened when you modified `n = (n + 1) % 1`.
 - What are the advantages of using a look-up-table and what is the alternative?
+- What shape did you observe for the output of the raw / filtered signals?
+- Is the shape the same as a standard impulse reconstruction or a sinc reconstruction?
+- How would you model this shape mathematically?
 
 # Experiment 2: Sampling and Reconstruction
 ## Introduction
@@ -97,8 +115,8 @@ In this experiment you will use the Arduino Due to sample an analogue input usin
 4. Connect the DAC output to the oscilloscope.
 5. Set the wave generator to a sine wave with parameters:
    - frequency: 1 kHz
-   - offset: 1.65 V
-   - amplitude: no more than about 3.3 Vpp
+   - high level: < 3.3 V
+   - low-level: 0.0V
 
 ### Software Setup
 Ensure that the Arduino IDE is setup according to the last experiment:
@@ -121,10 +139,10 @@ $$
 
 ### Learning Outcomes
 By the end of this experiment, you should be able to:
-- describe the signal path from ADC to DSP to DAC,
-- explain the meaning of the memoryless system $y[n] = f(x[n])$,
-- distinguish between raw and filtered analogue input channels,
-- relate changes in sample rate to reconstruction quality and aliasing effects,
+- describe the signal path from ADC to DSP to DAC
+- explain the meaning of the memoryless system $y[n] = f(x[n])$
+- distinguish between raw and filtered analogue input channels
+- relate changes in sample rate to reconstruction quality and aliasing effects
 - explain why some DSP modifications can cause clipping or overflow.
 
 
@@ -150,19 +168,20 @@ By the end of this experiment, you should be able to:
 - Modify the line `uint16_t y = x` to test another memoryless system.
 
 ### Questions
-- What did you observe when the input frequency approached the sampling limit?
-- Why did the output amplitude reduce towards zero at some frequencies?
+- What did you observe when the input frequency approached the Nyquist (folding) frequency?
+- What did you observe as the input frequency went slightly above the Nyquist (folding) frequency?
+- What did you observe as the input frequency approached the sampling rate?
+- What did you observe as the input frequency went slightly above the sampling rate?
 - What differences did you observe between the raw and filtered outputs?
 - What happened when you reduced the sample rate?
 - What is the effect of changing the DSP line to scale or offset the signal?
 - What do integer overflow and clipping look like in theory and in practice?
-- What do you expect to happen to input components above 10 kHz when using the filtered input?
 
 ---
 
 # Experiment 3: Feedforward Echo
 ## Introduction
-In this experiment you will implement an echo effect using a system with memory. The current input sample is combined with a delayed version of the input signal stored in a circular buffer.
+In this experiment you will implement an echo effect. The current input sample is combined with a delayed version of the input signal stored in a circular buffer.
 
 ## Setup
 ### Hardware Setup
@@ -181,7 +200,7 @@ Ensure that the Arduino IDE is setup according to the last experiment:
 1. Open the Arduino file `ELEC3004_Lab1_Ex02_SampRecon.ino`
 
 ### Experimental Aims
-- To implement a discrete-time echo system with memory.
+- To implement a discrete-time echo system.
 - To relate the program to the feedforward echo model
   
 $$
