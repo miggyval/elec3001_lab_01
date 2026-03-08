@@ -1,4 +1,4 @@
-// Filename: ELEC3004_Lab1_Ex03_Echo.ino
+// Filename: ELEC3004_Lab1_Ex03_EchoFeedforward.ino
 
 // Rewritten by Miguel Valencia | School of EECS, UQ
 // Original code by Ian Clough | School of EECS, UQ
