@@ -25,7 +25,7 @@
 - Be sure to practice standard laboratory safety measures when working with electrical circuits
 
 
-# Experiment 1 - Sine Wave Generation
+# Experiment 1: Sine Wave Generation
 ## Introduction
 In this experiment you will be using the Arduino Due to generate and output a sine wave.
 
