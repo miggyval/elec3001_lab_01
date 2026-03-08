@@ -3,7 +3,7 @@
 // Rewritten by Miguel Valencia | School of EECS, UQ
 // Original code by Ian Clough | School of EECS, UQ
 // Feedback echo:
-// y[n] = (1 - a)*x[n] + a*y[n - D]
+// y[n] = b*x[n] + a*y[n - D]
 
 // ***********************************************************//
 // NOTE: This is a solution file to check your implementation //
