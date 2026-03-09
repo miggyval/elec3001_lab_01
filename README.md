@@ -18,9 +18,10 @@
 - Review analogue low-pass filters (low-pass filter, Sallen-Key topology for Butterworth filter)
 
 # Lab Instructions
-- Work together in groups of 2-3.
+- Please work **together** in groups of 2-3.
 - The experiments are designed to help you understand concepts
 - Ask questions and practice mindfulness and reflectivity when completing the lab
+- While not directly assessed, the concepts and theory in the lab may be assessable in future problem sets and/or exams
 - This lab isn't a step-by-step recipe. Feel free to experiment with the parameters (within reason)
 - Be sure to practice standard laboratory safety measures when working with electrical circuits
 
@@ -44,6 +45,9 @@ By the end of this lab, you should be able to:
 ## Introduction
 In this experiment you will be using the Arduino Due to generate and output a sine wave.
 
+The Arduino Due /ˈduːe/ (DOO-eh) is an open-source platform for embedded systems development. 
+
+This particular device uses an 84 MHz 32-bit ARM microcontroller with a plethora of digital I/O and analogue I/O in the form of ADC, PWM and DAC.
 ## Setup
 ### Hardware Setup
 1. Connect the Arduino Due to a computer with the micro-B USB cable using the programming port
